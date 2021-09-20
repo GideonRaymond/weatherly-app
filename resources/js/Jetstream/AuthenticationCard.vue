@@ -17,10 +17,6 @@
         background: linear-gradient(120deg, rgb(0, 18, 138), rgb(255, 130, 85) 140%);
     }
 
-    /* .bg-blue {
-        background-color: rgb(0, 10, 115);
-    } */
-
     .border-linear-gradient {
         padding: 2px;
         background: linear-gradient(300deg, rgb(0, 18, 138), rgb(255, 130, 85))

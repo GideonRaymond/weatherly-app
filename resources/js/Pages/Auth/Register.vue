@@ -23,7 +23,7 @@
                 <jet-label for="password" value="Password" />
                 <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
             </div>
-            <button class="underline text-xs text-indigo-600 hover:text-indigo-900" v-on:click="getSuggestedPassword()">Generate password</button>
+            <button class="underline text-xs text-indigo-600 hover:text-indigo-900" v-on:click="getSuggestedPassword()">Generate password</button> {{ this.form.password }}
 
             <div class="mt-4">
                 <jet-label for="password_confirmation" value="Confirm Password" />
@@ -64,7 +64,7 @@
     import JetCheckbox from '@/Jetstream/Checkbox.vue'
     import JetLabel from '@/Jetstream/Label.vue'
     import JetValidationErrors from '@/Jetstream/ValidationErrors.vue'
-    import { Head, Link } from '@inertiajs/inertia-vue3';
+    import { Head, Link, usePage } from '@inertiajs/inertia-vue3';
 
     export default defineComponent({
         components: {
@@ -78,11 +78,6 @@
             JetValidationErrors,
             Link,
         },
-
-        props: {
-            location,
-        },
-
         data() {
             return {
                 form: this.$inertia.form({
@@ -102,8 +97,12 @@
                 })
             },
             getSuggestedPassword() {
-                console.log(this.location.countryCode)
-                const location = this.location;
+                const weather = usePage().props.value.weather.current
+                let password  = Math.random().toString(36);
+                let description = weather ? weather.weather[0].description : ''
+                description = description.replaceAll(' ', '_')
+                this.form.password = description ? description + password.slice(-8) : password 
+                this.form.password_confirmation = this.form.password
             }
         }
     })

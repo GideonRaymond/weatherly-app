@@ -4,11 +4,12 @@
 
         <jet-banner />
 
-        <div class="min-h-screen bg-indigo-700">
-            <div class="flex w-full justify-end max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <div class="items-center mr-6 align-right">
+        <div class="min-h-screen bg-linear-gradient overflow-hidden">
+            <div class="fixed w-full">
+                <div class="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8 flex justify-end">
+                    <div class="items-center align-right">
                         <!-- Settings Dropdown -->
-                        <div class="mr-6 relative">
+                        <div class="relative">
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
                                     <span class="inline-flex rounded-md">
@@ -42,6 +43,7 @@
                                 </template>
                             </jet-dropdown>
                         </div>
+                    </div>
                 </div>
             </div>
             <!-- Page Heading -->
@@ -98,3 +100,8 @@
         }
     })
 </script>
+<style scoped>
+    .bg-linear-gradient {
+        background: linear-gradient(120deg, rgb(0, 18, 138), rgb(255, 130, 85) 200%);
+    }
+</style>

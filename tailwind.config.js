@@ -4,6 +4,9 @@ module.exports = {
     mode: 'jit',
     theme: {
         extend: {
+            borderRadius: {
+                full: '50%',
+            },
             fontFamily: {
                 sans: ['Poppins', ...defaultTheme.fontFamily.sans],
             },
