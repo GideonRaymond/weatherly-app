@@ -1,64 +1,32 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# The Weatherly App
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Hieronder ga ik even kort mijn gedachteprocessen beschrijven. Waar ik tegenaan liep, de oplossingen die ik daarvoor heb kunnen vinden en wat mij uiteindelijk niet gelukt is.
 
-## About Laravel
+Belangrijk om hierbij te melden is dat ik voor zaterdagochtend nog nooit met PHP gewerkt heb en nooit in de Laravel framework (en dus ook nooit met Vue). Vrijdagavond ging ik de docs doorlezen en besloot dat het wel een poging waard was.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Na 2.5 dag te strugglen heb ik wel een beetje het gevoel ervoor gekregen. Ik denk dat ik het in Angular heb gebouwd met een simpele gRpc backend dat dit hele project wat vlotter en completer afgerond kon worden; alleen deels van de opdracht (althans; dit verzin ik er zelf bij) was om aan te tonen dat ik veel zelf uit kan zoeken in een korte tijd.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Wat mij WEL gelukt is:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Een app opgezet in de Laravel framework, samen met Vue.
+-   Een database gekoppeld om de user-management te managen.
+-   Email-verificatie op te zetten
+-   Api's aangesloten om weer-informatie op te halen en om de locatiegegevens van iemand zijn IP-adres op te halen.
 
-## Learning Laravel
+### Waar ik tegenaan liep:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Het framework zelf. Het duurde echt even voordat ik door had hoe alles binnen de framework met elkaar communieert. Tegenwoordig kan je simpel packages toevoegen om veel dingen (zoals de email verificatie) automagisch op te zetten; echter vergroot dit de complexiteit van de app enorm omdat er vele bestanden toegevoegd worden die ik zelf niet geschreven heb. Dit kostte veel tijd om uit te vogelen. Ook het server-side renderen van pagina's is iets wat ik nog goed moet uitzoeken; het is, en voelt ook, heel erg achterstevoren. Ook omdat de Laravel app met Inertia geshipped wordt (wat weer client-side is), maakte dit alles nog ingewikkelder omdat mijn eigen app dan net-niet overeenkomt met 90% van de documentatie online. Gelukkig zijn de docs van Inertia zelf helder en kwam ik redelijk snel uit mijn voeten daarmee.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Wat niet gelukt is
 
-## Laravel Sponsors
+De historische data op te halen. Dit heb ik eigenlijk gewoon overgeslagen. Charts wou ik aan de voorkant rederen via ChartJs; alleen na heel wat struggle kwam ik erachter dat Vue-ChartJS (de extentie van Chart) nog niet met Vue-3 overweg kan. Hierdoor kreeg ik steeds kryptische compile errors op braken mijn package-dependencies; waardoor het eigenlijk op neer kwam dat ik ChartJs niet kon gebruiken. Tegen die tijd was het ook te laat om server-side Charts te bouwen (want dat zou nog wat uitzoekwerk kosten ook).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Het is mij dus ook niet gelukt om de weer-trend en verwachte-regen te plotten. Ook kwam ik hierbij achter dat mijn API wel een 5-daagse voorspelling had met regen-variabelen; alleen kwam die altijd voor regen als 'undefined' terug. Dus voor die had ik ook een andere api moeten zoeken; of mijn huidige wisselen. Vandaar dat ik gwn de 5-daagse voorspelling toon ipv de gevraagde statistieken.
 
-### Premium Partners
+Ook wou ik de linear-gradient in de achtergrond draaien met de verloop van de dag; wat niet super moeilijk is, alleen mij zin daarin raakte een beetje op.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+### Waar ik zelf trots op ben
 
-## Contributing
+Tot 4 uur geleden dacht ik dat het mij gewoon zou lukken om alles af te ronden (kut ChartJs); wat ik gistermiddag eigenlijk niet meer verwacht had. Het is bizar hoeveel sneller ik te werk ging in de laatste paar dagen.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Thanks voor deze opdracht. Het heeft mij wat energie gekost en wellicht een heel klein beetje stres ook. Maar ik heb (voor mezelf iig) bewezen dat ik slimmer en aanpaspaarder ben ik dan dat ik zelf vaak geloof. Dus daar voel ik mij zeker goed bij :)
