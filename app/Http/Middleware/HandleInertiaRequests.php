@@ -35,16 +35,20 @@ class HandleInertiaRequests extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    // public function share(Request $request)
-    // {
-    //     // dd($location->countryCode);
-    //     return array_merge(parent::share($request), [
-    //         'location' => function () {
-    //             $location = Location::get();
-    //             return [
-    //                 'cityName' => $location->cityName
-    //             ];
-    //         }
-    //     ]);
-    // }
+    public function share(Request $request)
+    {
+        // dd($location->countryCode);
+        $location = Location::get();
+        $locationArray = [
+            'countryCode' => $location->countryCode,
+            'regionCode' => $location->regionCode,
+            'cityName' => $location->cityName,
+            'lat' => $location->latitude,
+            'lng' => $location->longitude,
+        ];
+        return array_merge(parent::share($request), [
+            'location' => $locationArray
+
+        ]);
+    }
 }

@@ -23,7 +23,7 @@
                 <jet-label for="password" value="Password" />
                 <jet-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />
             </div>
-            <button class="text-sm" v-on:click="getSuggestedPassword()">Generate password</button>
+            <button class="underline text-xs text-indigo-600 hover:text-indigo-900" v-on:click="getSuggestedPassword()">Generate password</button>
 
             <div class="mt-4">
                 <jet-label for="password_confirmation" value="Confirm Password" />
@@ -43,7 +43,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                <Link :href="route('login')" class="underline text-sm text-indigo-600 hover:text-indigo-900">
                     Already registered?
                 </Link>
 
@@ -102,7 +102,7 @@
                 })
             },
             getSuggestedPassword() {
-                console.log(this.location)
+                console.log(this.location.countryCode)
                 const location = this.location;
             }
         }
